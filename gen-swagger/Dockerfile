@@ -24,4 +24,4 @@ ENV PATH $PATH:/go/proto/bin
 
 WORKDIR /source
 
-CMD ["make"]
+ENTRYPOINT ["/hooks/gen.sh"]

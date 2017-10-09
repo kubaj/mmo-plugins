@@ -20,3 +20,5 @@ RUN go get -u github.com/grpc-ecosystem/grpc-gateway/protoc-gen-grpc-gateway
 
 ADD hooks/* /hooks/
 ADD mmo-plugin.yaml /plugin/mmo-plugin.yaml
+
+ENTRYPOINT ["/hooks/gen.sh"]
