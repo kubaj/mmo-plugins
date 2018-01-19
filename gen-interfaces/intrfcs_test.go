@@ -3,7 +3,7 @@ package main
 import (
 	"github.com/stretchr/testify/suite"
 	"testing"
-	"github.com/flowup/mmo/utils/filecompare"
+	"io/ioutil"
 )
 
 type IntrfcsAccessSuite struct {
@@ -24,7 +24,7 @@ type testStruct struct {
 	Expected string
 }
 
-func (s *IntrfcsAccessSuite) TestParse() {
+func (s *IntrfcsAccessSuite) TestService() {
 	candidates := []testStruct{
 		{
 			Input:    "fixtures/proto1_go",
@@ -44,8 +44,46 @@ func (s *IntrfcsAccessSuite) TestParse() {
 	}
 
 	for _, candidate := range candidates {
-		s.Nil(Parse(candidate.Input, candidate.Output))
-		s.Nil(filecompare.CompareFiles(candidate.Output, candidate.Expected))
+		data, err := ParseInterfaces(candidate.Input, candidate.Output, false)
+		s.Nil(err)
+
+		serviceContent, err := ioutil.ReadFile(candidate.Output)
+		s.Nil(err)
+
+		serviceContentString := string(serviceContent)
+
+		serviceContentString += data
+
+		serviceContentOriginal, err := ioutil.ReadFile(candidate.Expected)
+		s.Nil(err)
+
+		s.Equal(serviceContentString, string(serviceContentOriginal))
+	}
+}
+
+func (s *IntrfcsAccessSuite) TestGatewayMock() {
+	candidates := []testStruct{
+		{
+			Input:    "fixtures/proto1_go",
+			Output:   "fixtures/service.proto.bp.mock_go",
+			Expected: "fixtures/service.proto.bp.mock_orig_go",
+		},
+	}
+
+	for _, candidate := range candidates {
+		data, err := ParseInterfaces(candidate.Input, candidate.Output, true)
+		s.Nil(err)
+		serviceContent, err := ioutil.ReadFile(candidate.Output)
+		s.Nil(err)
+
+		serviceContentString := string(serviceContent)
+
+		serviceContentString += data
+
+		serviceContentOriginal, err := ioutil.ReadFile(candidate.Expected)
+		s.Nil(err)
+
+		s.Equal(serviceContentString, string(serviceContentOriginal))
 	}
 }
 
