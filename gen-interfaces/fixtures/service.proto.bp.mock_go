@@ -1,0 +1,20 @@
+package Service
+
+import (
+	"golang.org/x/net/context"
+	google_protobuf "github.com/golang/protobuf/ptypes/empty"
+	"google.golang.org/grpc"
+)
+
+type ServiceServiceClientMock struct {
+}
+
+func NewServiceServiceClientMock() ServiceServiceClient {
+	return &ServiceServiceClientMock{}
+}
+
+
+func (s *Service) GetVersion(ctx context.Context, in *google_protobuf.Empty, opts ...grpc.CallOption) (*Version, error) {
+
+	return &Version{}, nil
+}
