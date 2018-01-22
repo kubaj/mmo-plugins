@@ -6,7 +6,7 @@ do
     cd /source/$service/protobuf
     mkdir /tmp/$service
     protoc -I/usr/local/include -I. -I/googleapis -I${GOPATH}/src --swagger_out=logtostderr=true:/tmp/$service proto.proto
-    node /scripts/servicer.js $service
+    #node /scripts/servicer.js $service
 done
 
 echo "Merging swagger files"

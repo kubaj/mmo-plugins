@@ -1,3 +1,3 @@
 #!/bin/bash
 
-npm run generate -- -s /source/swagger.yaml -o /source/ui/api
+ngx-swag-client -s /source/swagger.yaml -o /source/ui/api
