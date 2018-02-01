@@ -1,0 +1,15 @@
+# Changelog
+
+## 1.2.1
+
+* `flowup/mmo-gen-angular-client`
+  * Models are removed from project when removed from proto
+
+## 1.0.1
+
+* `flowup/mmo-gen-go-grpc`
+  * Support of importing protofiles from different service
+* `flowup/mmo-gen-grpc-gateway`
+  * Support of importing protofiles from different service
+* `flowup/mmo-gen-swagger`
+  * Support of importing protofiles from different service
