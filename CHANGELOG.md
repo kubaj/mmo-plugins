@@ -5,6 +5,10 @@
 * `flowup/mmo-gen-angular-client`
   * Models are removed from project when removed from proto
 
+## 1.0.2
+* `flowup/mmo-gen-go-grpc`
+  * gogo generator swapped for gofast due to the better compatiblity with grpc-gateway
+
 ## 1.0.1
 
 * `flowup/mmo-gen-go-grpc`

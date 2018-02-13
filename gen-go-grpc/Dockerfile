@@ -8,7 +8,7 @@ RUN mkdir proto && cd proto && \
     chmod +x bin/protoc
 
 RUN git clone https://github.com/googleapis/googleapis.git /googleapis
-RUN go get -u github.com/gogo/protobuf/protoc-gen-gogo
+RUN go get -u github.com/gogo/protobuf/protoc-gen-gofast
 RUN go get -u github.com/grpc-ecosystem/grpc-gateway/protoc-gen-grpc-gateway
 
 ENV PROTO_PATH /go/proto/include
