@@ -1,4 +1,4 @@
 #!/bin/bash
 
 rm /source/ui/api/models/*
-ngx-swag-client -s /source/swagger.yaml -o /source/ui/api
+api-client-generator -s /source/swagger.yaml -o /source/ui/api
