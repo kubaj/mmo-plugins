@@ -25,17 +25,22 @@ func main() {
 	}
 }
 
-func OpenFile(inputPath, outputPath, serviceName string, gateway bool) error {
+func OpenFile(inputPath, outputPath, serviceName string, mock bool) error {
 	// load content of service.go file
 	if _, err := ioutil.ReadFile(outputPath); err != nil {
 		file, err := os.Create(outputPath)
 		if err != nil {
 			return err
 		}
-		file.WriteString(CreateHeader(serviceName))
+		if mock {
+			_, err := file.WriteString(CreateHeader(serviceName))
+			if err != nil {
+				return err
+			}
+		}
 	}
 
-	data, err := ParseInterfaces(inputPath, outputPath, gateway)
+	data, err := ParseInterfaces(inputPath, outputPath, mock)
 	if err != nil {
 		return err
 	}
@@ -72,8 +77,9 @@ func CreateHeader(serviceName string) string {
 }
 
 var regInterfaces = regexp.MustCompile(`type .[^\s]*Client interface {(\s*.[^\n]*\s*[^\}]*)}`)
+var reqFunc = regexp.MustCompile(`func\s\((.[^\s]*)\s\*(.[^\s\)]*)`)
 
-func ParseInterfaces(inputPath, outputPath string, gateway bool) (string, error) {
+func ParseInterfaces(inputPath, outputPath string, mock bool) (string, error) {
 	data := ""
 
 	// load content of proto.pb.go file
@@ -83,14 +89,23 @@ func ParseInterfaces(inputPath, outputPath string, gateway bool) (string, error)
 	}
 
 	// load content of service.go file
-	serviceContent, err := ioutil.ReadFile(outputPath)
+	outputContent, err := ioutil.ReadFile(outputPath)
 	if err != nil {
 		return "", err
 	}
 
+	funcLetter := "s"
+	funcName := "Service"
+	funcDef := reqFunc.FindAllStringSubmatch(string(outputContent), -1)
+	if len(funcDef) > 0 {
+		if len(funcDef) > 2 {
+			funcLetter = funcDef[0][1]
+			funcName = funcDef[0][2]
+		}
+	}
+
 	// this regexp find all interfaces
 	for _, match := range regInterfaces.FindAllStringSubmatch(string(protoContent), -1) {
-
 		// parse line by line
 		for _, lines := range strings.Split(match[1], "\n") {
 			result := strings.FieldsFunc(lines, func(r rune) bool {
@@ -110,7 +125,7 @@ func ParseInterfaces(inputPath, outputPath string, gateway bool) (string, error)
 				`\s*\,\s*\S*\s*` +
 				regexp.QuoteMeta(result[4])
 
-			if gateway {
+			if mock {
 				conditional += `,\s*opts\s*...grpc.CallOption`
 			}
 			conditional += `\s*\)\s*\(\s*` +
@@ -119,12 +134,12 @@ func ParseInterfaces(inputPath, outputPath string, gateway bool) (string, error)
 				regexp.QuoteMeta(result[8])
 
 			if !regexp.MustCompile(conditional).
-				MatchString(string(serviceContent)) {
+				MatchString(string(outputContent)) {
 
 				log.Println("Adding " + result[0] + "interface to service")
 
 				// added to file new interfaces
-				data += "\nfunc (s *Service) " +
+				data += "\nfunc (" + funcLetter + " *" + funcName + ") " +
 					result[0] +
 					"(" +
 					result[1] +
@@ -135,7 +150,7 @@ func ParseInterfaces(inputPath, outputPath string, gateway bool) (string, error)
 					" " +
 					result[4]
 
-				if gateway {
+				if mock {
 					data += ", opts ...grpc.CallOption"
 				}
 				data += ") (" +

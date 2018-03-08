@@ -4,6 +4,8 @@ import (
 	"github.com/stretchr/testify/suite"
 	"testing"
 	"io/ioutil"
+	"github.com/sergi/go-diff/diffmatchpatch"
+	"fmt"
 )
 
 type IntrfcsAccessSuite struct {
@@ -57,6 +59,12 @@ func (s *IntrfcsAccessSuite) TestService() {
 		serviceContentOriginal, err := ioutil.ReadFile(candidate.Expected)
 		s.Nil(err)
 
+		dmp := diffmatchpatch.New()
+
+		diffs := dmp.DiffMain(serviceContentString, string(serviceContentOriginal), true)
+		fmt.Println(len(diffs))
+		fmt.Println(dmp.DiffPrettyText(diffs))
+
 		s.Equal(serviceContentString, string(serviceContentOriginal))
 	}
 }
@@ -67,6 +75,11 @@ func (s *IntrfcsAccessSuite) TestGatewayMock() {
 			Input:    "fixtures/proto1_go",
 			Output:   "fixtures/service.proto.bp.mock_go",
 			Expected: "fixtures/service.proto.bp.mock_orig_go",
+		},
+		{
+			Input:    "fixtures/proto2_go",
+			Output:   "fixtures/service2.proto.bp.mock_go",
+			Expected: "fixtures/service2.proto.bp.mock_orig_go",
 		},
 	}
 
@@ -82,6 +95,12 @@ func (s *IntrfcsAccessSuite) TestGatewayMock() {
 
 		serviceContentOriginal, err := ioutil.ReadFile(candidate.Expected)
 		s.Nil(err)
+
+		dmp := diffmatchpatch.New()
+
+		diffs := dmp.DiffMain(serviceContentString, string(serviceContentOriginal), false)
+		fmt.Println(len(diffs))
+		fmt.Println(dmp.DiffPrettyText(diffs))
 
 		s.Equal(serviceContentString, string(serviceContentOriginal))
 	}
