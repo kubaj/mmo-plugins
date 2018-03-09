@@ -40,7 +40,7 @@ func OpenFile(inputPath, outputPath, serviceName string, mock bool) error {
 		}
 	}
 
-	data, err := ParseInterfaces(serviceName, inputPath, outputPath, mock)
+	data, err := ParseInterfaces(strings.Title(serviceName), inputPath, outputPath, mock)
 	if err != nil {
 		return err
 	}
@@ -69,10 +69,10 @@ func CreateHeader(serviceName string) string {
 		"\tgoogle_protobuf \"github.com/golang/protobuf/ptypes/empty\"\n" +
 		"\t\"google.golang.org/grpc\"\n" +
 		")\n\n" +
-		"type " + serviceName + "ServiceClientMock struct {\n" +
+		"type " + strings.Title(serviceName) + "ServiceClientMock struct {\n" +
 		"}\n\n" +
-		"func New" + serviceName + "ServiceClientMock() " + serviceName + "ServiceClient {\n" +
-		"\treturn &" + serviceName + "ServiceClientMock{}\n" +
+		"func New" + strings.Title(serviceName) + "ServiceClientMock() " + strings.Title(serviceName) + "ServiceClient {\n" +
+		"\treturn &" + strings.Title(serviceName) + "ServiceClientMock{}\n" +
 		"}\n"
 }
 
