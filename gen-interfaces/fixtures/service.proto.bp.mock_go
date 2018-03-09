@@ -14,7 +14,7 @@ func NewServiceServiceClientMock() ServiceServiceClient {
 }
 
 
-func (s *Service) GetVersion(ctx context.Context, in *google_protobuf.Empty, opts ...grpc.CallOption) (*Version, error) {
+func (s *HorseServiceClientMock) GetVersion(ctx context.Context, in *google_protobuf.Empty, opts ...grpc.CallOption) (*Version, error) {
 
 	return &Version{}, nil
 }

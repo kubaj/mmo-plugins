@@ -40,7 +40,7 @@ func OpenFile(inputPath, outputPath, serviceName string, mock bool) error {
 		}
 	}
 
-	data, err := ParseInterfaces(inputPath, outputPath, mock)
+	data, err := ParseInterfaces(serviceName, inputPath, outputPath, mock)
 	if err != nil {
 		return err
 	}
@@ -79,7 +79,7 @@ func CreateHeader(serviceName string) string {
 var regInterfaces = regexp.MustCompile(`type .[^\s]*Client interface {(\s*.[^\n]*\s*[^\}]*)}`)
 var reqFunc = regexp.MustCompile(`func\s\((.[^\s]*)\s\*(.[^\s\)]*)`)
 
-func ParseInterfaces(inputPath, outputPath string, mock bool) (string, error) {
+func ParseInterfaces(serviceName, inputPath, outputPath string, mock bool) (string, error) {
 	data := ""
 
 	// load content of proto.pb.go file
@@ -96,6 +96,9 @@ func ParseInterfaces(inputPath, outputPath string, mock bool) (string, error) {
 
 	funcLetter := "s"
 	funcName := "Service"
+	if mock {
+		funcName = serviceName + funcName + "ClientMock"
+	}
 	funcDef := reqFunc.FindAllStringSubmatch(string(outputContent), -1)
 	if len(funcDef) > 0 {
 		if len(funcDef) > 2 {

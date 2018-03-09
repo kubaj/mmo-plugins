@@ -21,9 +21,10 @@ func (s *IntrfcsAccessSuite) SetupTest() {
 
 // Test
 type testStruct struct {
-	Input    string
-	Output   string
-	Expected string
+	Input       string
+	Output      string
+	Expected    string
+	ServiceName string
 }
 
 func (s *IntrfcsAccessSuite) TestService() {
@@ -46,7 +47,7 @@ func (s *IntrfcsAccessSuite) TestService() {
 	}
 
 	for _, candidate := range candidates {
-		data, err := ParseInterfaces(candidate.Input, candidate.Output, false)
+		data, err := ParseInterfaces("Horse", candidate.Input, candidate.Output, false)
 		s.Nil(err)
 
 		serviceContent, err := ioutil.ReadFile(candidate.Output)
@@ -81,10 +82,15 @@ func (s *IntrfcsAccessSuite) TestGatewayMock() {
 			Output:   "fixtures/service2.proto.bp.mock_go",
 			Expected: "fixtures/service2.proto.bp.mock_orig_go",
 		},
+		{
+			Input:    "fixtures/proto2_go",
+			Output:   "fixtures/service2.proto.bp.mock_go2",
+			Expected: "fixtures/service2.proto.bp.mock_orig_go",
+		},
 	}
 
 	for _, candidate := range candidates {
-		data, err := ParseInterfaces(candidate.Input, candidate.Output, true)
+		data, err := ParseInterfaces("Horse", candidate.Input, candidate.Output, true)
 		s.Nil(err)
 		serviceContent, err := ioutil.ReadFile(candidate.Output)
 		s.Nil(err)
@@ -98,11 +104,11 @@ func (s *IntrfcsAccessSuite) TestGatewayMock() {
 
 		dmp := diffmatchpatch.New()
 
-		diffs := dmp.DiffMain(serviceContentString, string(serviceContentOriginal), false)
+		diffs := dmp.DiffMain(string(serviceContentOriginal), serviceContentString, false)
 		fmt.Println(len(diffs))
 		fmt.Println(dmp.DiffPrettyText(diffs))
 
-		s.Equal(serviceContentString, string(serviceContentOriginal))
+		s.Equal(string(serviceContentOriginal), (serviceContentString))
 	}
 }
 
