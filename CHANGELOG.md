@@ -17,3 +17,5 @@
   * Support of importing protofiles from different service
 * `flowup/mmo-gen-swagger`
   * Support of importing protofiles from different service
+* `flowup/mmo-gen-proto-interface`
+  * Support of service mock client generation (testability of other services)

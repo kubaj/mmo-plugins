@@ -1,0 +1,90 @@
+package horse
+
+import (
+	"golang.org/x/net/context"
+	google_protobuf "github.com/golang/protobuf/ptypes/empty"
+	"google.golang.org/grpc"
+	"github.com/flowup/monet-equimo/core"
+)
+
+type HorseServiceClientMock struct {
+}
+
+func NewHorseServiceClientMock() HorseServiceClient {
+	return &HorseServiceClientMock{}
+}
+
+func (s *HorseServiceClientMock) SyncHorses(ctx context.Context, in *Horses, opts ...grpc.CallOption) (*Horses, error) {
+
+	return &Horses{}, nil
+}
+
+func (s *HorseServiceClientMock) ListHorses(ctx context.Context, in *HorseList, opts ...grpc.CallOption) (*HorseList, error) {
+
+	return &HorseList{}, nil
+}
+
+func (s *HorseServiceClientMock) GetHorse(ctx context.Context, in *core.IDMessage, opts ...grpc.CallOption) (*Horse, error) {
+
+	return &Horse{}, nil
+}
+
+func (s *HorseServiceClientMock) GetHorseFromFEI(ctx context.Context, in *core.IDMessage, opts ...grpc.CallOption) (*Horse, error) {
+
+	return &Horse{}, nil
+}
+
+func (s *HorseServiceClientMock) CreateHorse(ctx context.Context, in *Horse, opts ...grpc.CallOption) (*Horse, error) {
+
+	return &Horse{}, nil
+}
+
+func (s *HorseServiceClientMock) UpdateHorse(ctx context.Context, in *Horse, opts ...grpc.CallOption) (*Horse, error) {
+
+	return &Horse{}, nil
+}
+
+func (s *HorseServiceClientMock) DeleteHorse(ctx context.Context, in *core.IDMessage, opts ...grpc.CallOption) (*google_protobuf.Empty, error) {
+
+	return &google_protobuf.Empty{}, nil
+}
+
+func (s *HorseServiceClientMock) CreateHorseSharing(ctx context.Context, in *HorseSharingRequest, opts ...grpc.CallOption) (*HorseSharing, error) {
+
+	return &HorseSharing{}, nil
+}
+
+func (s *HorseServiceClientMock) GetHorseSharingByHorseID(ctx context.Context, in *core.IDMessage, opts ...grpc.CallOption) (*HorseSharingList, error) {
+
+	return &HorseSharingList{}, nil
+}
+
+func (s *HorseServiceClientMock) GetHorseSharingByUserID(ctx context.Context, in *core.IDMessage, opts ...grpc.CallOption) (*HorseSharingList, error) {
+
+	return &HorseSharingList{}, nil
+}
+
+func (s *HorseServiceClientMock) DeleteHorseSharing(ctx context.Context, in *HorseSharing, opts ...grpc.CallOption) (*google_protobuf.Empty, error) {
+
+	return &google_protobuf.Empty{}, nil
+}
+
+func (s *HorseServiceClientMock) GetAllHorseSharings(ctx context.Context, in *google_protobuf.Empty, opts ...grpc.CallOption) (*HorseSharingList, error) {
+
+	return &HorseSharingList{}, nil
+}
+
+func (s *HorseServiceClientMock) ValidateHorse(ctx context.Context, in *core.IDMessage, opts ...grpc.CallOption) (*google_protobuf.Empty, error) {
+
+	return &google_protobuf.Empty{}, nil
+}
+
+func (s *HorseServiceClientMock) SaveImage(ctx context.Context, in *HorseImage, opts ...grpc.CallOption) (*google_protobuf.Empty, error) {
+
+	return &google_protobuf.Empty{}, nil
+}
+
+func (s *HorseServiceClientMock) ValidateHorseSharing(ctx context.Context, in *HorseSharing, opts ...grpc.CallOption) (*google_protobuf.Empty, error) {
+
+	return &google_protobuf.Empty{}, nil
+}

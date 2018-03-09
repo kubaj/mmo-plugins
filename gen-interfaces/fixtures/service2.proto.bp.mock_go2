@@ -1,0 +1,15 @@
+package horse
+
+import (
+	"golang.org/x/net/context"
+	google_protobuf "github.com/golang/protobuf/ptypes/empty"
+	"google.golang.org/grpc"
+	"github.com/flowup/monet-equimo/core"
+)
+
+type HorseServiceClientMock struct {
+}
+
+func NewHorseServiceClientMock() HorseServiceClient {
+	return &HorseServiceClientMock{}
+}
