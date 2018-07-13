@@ -1,13 +1,13 @@
-# MMO ecosystem repository
+# MMO plugins repository
 
-This repository will contain all MMO stuff that isn't supposed to be in the core repository
+This repository contains all officially supported MMO plugins.
 
 ## MMO Plugin creation guide
 
-MMO Plugin is Docker container. It meets following properties:
+Every MMO Plugin is a Docker container. It has following properties:
 
-* Source code is mount to `/source`
-* Entrypoint is set to program that does generating
+* Source code is mounted to `/source` folder
+* Entrypoint is set to a program named `gen.sh` (generator)
 
 Upon plugin invocation container is started and name of the service(s) are passed as command arguments to the entrypoint program. 
 
@@ -15,22 +15,20 @@ There are two types of the plugins - global and service plugins. Principle of fu
 
 ### Example
 
-Simple example of the MMO plugin. Plugin will create empty file `hello-mmo` in service.
+**Simple example of the MMO plugin that creates an empty file called `hello-mmo` in service.**
 
-Generation script named `gen.sh`:
-
+Create a script named `gen.sh` in the root of your plugin folder:
 ```bash
 #!/bin/sh
 touch $1
 ```
 
-Don't forget add execution permission to script:
-
+Don't forget to add execution permissions to the script:
 ```
 $ chmod +x gen.sh
 ```
 
-Then we will create `Dockerfile`:
+Create `Dockerfile` in your root afterwards:
 
 ```Dockerfile
 FROM alpine:latest
