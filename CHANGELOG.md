@@ -1,5 +1,10 @@
 # Changelog
 
+## 1.3.0
+
+* `flowup/mmo-gen-angular-client`
+  * Angular client is based on the latest generator 
+
 ## 1.2.1
 
 * `flowup/mmo-gen-angular-client`
