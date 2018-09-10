@@ -14,112 +14,112 @@ func NewServiceServiceClientMock() ServiceServiceClient {
 }
 
 
-func (s *Service) GetVersion(ctx context.Context, in *google_protobuf.Empty, opts ...grpc.CallOption) (*Version, error) {
+func (s *HorseServiceClientMock) GetVersion(ctx context.Context, in *google_protobuf.Empty, opts ...grpc.CallOption) (*Version, error) {
 
 	return &Version{}, nil
 }
 
-func (s *Service) ListHorses(ctx context.Context, in *google_protobuf.Empty, opts ...grpc.CallOption) (*HorseList, error) {
+func (s *HorseServiceClientMock) ListHorses(ctx context.Context, in *google_protobuf.Empty, opts ...grpc.CallOption) (*HorseList, error) {
 
 	return &HorseList{}, nil
 }
 
-func (s *Service) GetTrainingData(ctx context.Context, in *GraphIDMessage, opts ...grpc.CallOption) (*TrainingDataList, error) {
+func (s *HorseServiceClientMock) GetTrainingData(ctx context.Context, in *GraphIDMessage, opts ...grpc.CallOption) (*TrainingDataList, error) {
 
 	return &TrainingDataList{}, nil
 }
 
-func (s *Service) GetTrainingByID(ctx context.Context, in *IDMessage, opts ...grpc.CallOption) (*Training, error) {
+func (s *HorseServiceClientMock) GetTrainingByID(ctx context.Context, in *IDMessage, opts ...grpc.CallOption) (*Training, error) {
 
 	return &Training{}, nil
 }
 
-func (s *Service) ListTrainings(ctx context.Context, in *Paging, opts ...grpc.CallOption) (*TrainingList, error) {
+func (s *HorseServiceClientMock) ListTrainings(ctx context.Context, in *Paging, opts ...grpc.CallOption) (*TrainingList, error) {
 
 	return &TrainingList{}, nil
 }
 
-func (s *Service) GetTrainingsByHorseID(ctx context.Context, in *IDMessage, opts ...grpc.CallOption) (*TrainingList, error) {
+func (s *HorseServiceClientMock) GetTrainingsByHorseID(ctx context.Context, in *IDMessage, opts ...grpc.CallOption) (*TrainingList, error) {
 
 	return &TrainingList{}, nil
 }
 
-func (s *Service) GetHorse(ctx context.Context, in *IDMessage, opts ...grpc.CallOption) (*Horse, error) {
+func (s *HorseServiceClientMock) GetHorse(ctx context.Context, in *IDMessage, opts ...grpc.CallOption) (*Horse, error) {
 
 	return &Horse{}, nil
 }
 
-func (s *Service) GetHorseFromFEI(ctx context.Context, in *IDMessage, opts ...grpc.CallOption) (*Horse, error) {
+func (s *HorseServiceClientMock) GetHorseFromFEI(ctx context.Context, in *IDMessage, opts ...grpc.CallOption) (*Horse, error) {
 
 	return &Horse{}, nil
 }
 
-func (s *Service) CreateTraining(ctx context.Context, in *Training, opts ...grpc.CallOption) (*Training, error) {
+func (s *HorseServiceClientMock) CreateTraining(ctx context.Context, in *Training, opts ...grpc.CallOption) (*Training, error) {
 
 	return &Training{}, nil
 }
 
-func (s *Service) CreateHorse(ctx context.Context, in *Horse, opts ...grpc.CallOption) (*Horse, error) {
+func (s *HorseServiceClientMock) CreateHorse(ctx context.Context, in *Horse, opts ...grpc.CallOption) (*Horse, error) {
 
 	return &Horse{}, nil
 }
 
-func (s *Service) UpdateHorse(ctx context.Context, in *Horse, opts ...grpc.CallOption) (*Horse, error) {
+func (s *HorseServiceClientMock) UpdateHorse(ctx context.Context, in *Horse, opts ...grpc.CallOption) (*Horse, error) {
 
 	return &Horse{}, nil
 }
 
-func (s *Service) DeleteTraining(ctx context.Context, in *IDMessage, opts ...grpc.CallOption) (*google_protobuf.Empty, error) {
+func (s *HorseServiceClientMock) DeleteTraining(ctx context.Context, in *IDMessage, opts ...grpc.CallOption) (*google_protobuf.Empty, error) {
 
 	return &google_protobuf.Empty{}, nil
 }
 
-func (s *Service) DeleteHorse(ctx context.Context, in *IDMessage, opts ...grpc.CallOption) (*google_protobuf.Empty, error) {
+func (s *HorseServiceClientMock) DeleteHorse(ctx context.Context, in *IDMessage, opts ...grpc.CallOption) (*google_protobuf.Empty, error) {
 
 	return &google_protobuf.Empty{}, nil
 }
 
-func (s *Service) CreateActivity(ctx context.Context, in *Activity, opts ...grpc.CallOption) (*Activity, error) {
+func (s *HorseServiceClientMock) CreateActivity(ctx context.Context, in *Activity, opts ...grpc.CallOption) (*Activity, error) {
 
 	return &Activity{}, nil
 }
 
-func (s *Service) ReadActivity(ctx context.Context, in *Activity, opts ...grpc.CallOption) (*Activity, error) {
+func (s *HorseServiceClientMock) ReadActivity(ctx context.Context, in *Activity, opts ...grpc.CallOption) (*Activity, error) {
 
 	return &Activity{}, nil
 }
 
-func (s *Service) ReadActivities(ctx context.Context, in *Activity, opts ...grpc.CallOption) (*ActivityList, error) {
+func (s *HorseServiceClientMock) ReadActivities(ctx context.Context, in *Activity, opts ...grpc.CallOption) (*ActivityList, error) {
 
 	return &ActivityList{}, nil
 }
 
-func (s *Service) UpdateActivity(ctx context.Context, in *Activity, opts ...grpc.CallOption) (*Activity, error) {
+func (s *HorseServiceClientMock) UpdateActivity(ctx context.Context, in *Activity, opts ...grpc.CallOption) (*Activity, error) {
 
 	return &Activity{}, nil
 }
 
-func (s *Service) DeleteActivity(ctx context.Context, in *Activity, opts ...grpc.CallOption) (*google_protobuf.Empty, error) {
+func (s *HorseServiceClientMock) DeleteActivity(ctx context.Context, in *Activity, opts ...grpc.CallOption) (*google_protobuf.Empty, error) {
 
 	return &google_protobuf.Empty{}, nil
 }
 
-func (s *Service) CreateHorseSharing(ctx context.Context, in *HorseSharing, opts ...grpc.CallOption) (*HorseSharing, error) {
+func (s *HorseServiceClientMock) CreateHorseSharing(ctx context.Context, in *HorseSharing, opts ...grpc.CallOption) (*HorseSharing, error) {
 
 	return &HorseSharing{}, nil
 }
 
-func (s *Service) ReadHorseSharingByHorseID(ctx context.Context, in *HorseSharing, opts ...grpc.CallOption) (*HorseSharingList, error) {
+func (s *HorseServiceClientMock) ReadHorseSharingByHorseID(ctx context.Context, in *HorseSharing, opts ...grpc.CallOption) (*HorseSharingList, error) {
 
 	return &HorseSharingList{}, nil
 }
 
-func (s *Service) ReadHorseSharingByUserID(ctx context.Context, in *HorseSharing, opts ...grpc.CallOption) (*HorseSharingList, error) {
+func (s *HorseServiceClientMock) ReadHorseSharingByUserID(ctx context.Context, in *HorseSharing, opts ...grpc.CallOption) (*HorseSharingList, error) {
 
 	return &HorseSharingList{}, nil
 }
 
-func (s *Service) DeleteHorseSharing(ctx context.Context, in *IDMessage, opts ...grpc.CallOption) (*google_protobuf.Empty, error) {
+func (s *HorseServiceClientMock) DeleteHorseSharing(ctx context.Context, in *IDMessage, opts ...grpc.CallOption) (*google_protobuf.Empty, error) {
 
 	return &google_protobuf.Empty{}, nil
 }

@@ -1,5 +1,6 @@
 var swaggermerge = require('swagger-merge');
 var fs = require("fs");
+var yaml = require('yamljs');
 
 var info = {
     version: "0.0.1",
@@ -21,8 +22,12 @@ process.argv.forEach(function (val, index, array) {
     }
 });
 
+try {
+    swaggers[swaggers.length] = yaml.parse(fs.readFileSync("../../swagger-extra.yaml", {encoding: 'utf8'}))
+} catch (e) { }
+
 merged = swaggermerge.merge(swaggers, info, '/', 'host', schemes)
-fs.writeFile('/tmp/swagger.json', JSON.stringify(merged), 'utf8', function(err) {
+fs.writeFile('/tmp/swagger.json', JSON.stringify(merged), 'utf8', function (err) {
     if (err) {
         return console.error(err);
     }
