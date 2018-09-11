@@ -1,10 +1,10 @@
-FROM golang
+FROM golang:1.11
 
 RUN apt-get update && apt-get install -y --no-install-recommends unzip && rm -rf /var/lib/apt/lists/*
 
 RUN mkdir proto && cd proto && \
-    wget https://github.com/google/protobuf/releases/download/v3.5.1/protoc-3.5.1-linux-x86_64.zip && \
-    unzip protoc-3.5.1-linux-x86_64.zip && rm protoc-3.5.1-linux-x86_64.zip && \
+    wget https://github.com/google/protobuf/releases/download/v3.6.1/protoc-3.6.1-linux-x86_64.zip && \
+    unzip protoc-3.6.1-linux-x86_64.zip && rm protoc-3.6.1-linux-x86_64.zip && \
     chmod +x bin/protoc
 
 RUN git clone https://github.com/googleapis/googleapis.git /googleapis

@@ -1,5 +1,18 @@
 # Changelog
 
+## 1.4.0
+
+* `flowup/mmo-gen-go-grpc`
+  * upgraded protoc to 3.6.1
+* `flowup/mmo-gen-grpc-gateway`
+  * upgraded protoc to 3.6.1
+  * grpc-gateway upgraded to 1.5.0
+* `flowup/mmo-gen-swagger`
+  * upgraded protoc to 3.6.1
+  * grpc-gateway upgraded to 1.5.0
+* `flowup/mmo-gen-angular-client`
+  * api-client-generator upgraded to version 4.0.1
+  
 ## 1.3.0
 
 * `flowup/mmo-gen-angular-client`
