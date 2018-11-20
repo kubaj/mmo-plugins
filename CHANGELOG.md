@@ -31,6 +31,8 @@
 
 ## 1.0.1
 
+* `flowup/mmo-gen-ignore-xxx`
+  * Add to all tags `json:"-"` tag `sql:"-"`
 * `flowup/mmo-gen-go-grpc`
   * Support of importing protofiles from different service
 * `flowup/mmo-gen-grpc-gateway`
