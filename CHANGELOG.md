@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.5.0
+* `flowup/mmo-gen-angular-client`
+  * api-client-generator generete to src/api with services also
+
 ## 1.4.0
 
 * `flowup/mmo-gen-go-grpc`
