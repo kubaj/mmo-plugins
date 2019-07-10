@@ -1,0 +1,4 @@
+name: Ignore XXX fields in sql
+global: false
+hooks:
+  gen: main
